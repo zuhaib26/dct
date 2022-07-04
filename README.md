@@ -1,64 +1,120 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+To run the project use
+```
+php artisan serve
+```
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+To create auth token for api use
+1. go to your local host.
+2. click register.
+3. Enter details.
+4. click register.
+5. click on create new token.
+6. enter name and click register.
+7. copy and save the token.
+8. you can use this token in api for authentication.
+9. Apart from authorization add Accept and Content-Type in every api request with value application/json
 
-## About Laravel
+By default user account of type customer will get created.
+To make a user Customer Service executive can the user type to cse.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+To create a new question 
+make a post call to 
+```
+{{YOUR_LOCAL_HOST}}/api/question/
+```
+with body
+```
+{
+    "question" : "Your Question?"
+}
+```
+<h3>For Customer as well as Customer service executive</h3>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+To check question
+make a get call to 
+```
+{{YOUR_LOCAL_HOST}}/api/question/
+```
 
-## Learning Laravel
+To check details of a single question with full communication
+make a get call to 
+```
+{{YOUR_LOCAL_HOST}}/api/question/{{QUESTION_ID}}
+```
+example
+```
+http://127.0.0.1:8000/api/question/1
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+To check Communication
+make a get call to 
+```
+{{YOUR_LOCAL_HOST}}/api/communication/
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+To post a reply
+make a post call to 
+```
+{{YOUR_LOCAL_HOST}}/api/communication/
+```
+with body
+```
+{
+    "response": "This is the answer",
+    "question_id": 1
+}
+```
 
-## Laravel Sponsors
+If user wants to update question
+make a put call to
+```
+{{YOUR_LOCAL_HOST}}/api/question/{{QUESTION_ID}}
+```
+example
+```
+http://127.0.0.1:8000/api/question/1
+```
+with body
+```
+{
+    "question": "updated question"
+}
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<h3>Only For Customer service executive</h3>
 
-### Premium Partners
+To update status of question 
+make a put call to
+```
+{{YOUR_LOCAL_HOST}}/api/question/{{QUESTION_ID}}
+```
+example
+```
+http://127.0.0.1:8000/api/question/1
+```
+with body
+```
+{
+     "status": "Answered"
+}
+```
+To Search using name
+make a get call to
+```
+{{BASE_URL}}/api/search/name/{{name}}
+```
+example
+```
+http://127.0.0.1:8000/api/search/name/Zuhaib
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+To Search using status
+make a get call to
+```
+{{BASE_URL}}/api/search/status/{{status}}
+```
+example
+```
+http://127.0.0.1:8000/api/search/status/Answered
+```
