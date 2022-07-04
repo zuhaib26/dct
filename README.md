@@ -1,3 +1,5 @@
+In oder to run this project you need to have PHP, Composer, Laravel installed.
+
 To run the project use
 ```
 php artisan serve
